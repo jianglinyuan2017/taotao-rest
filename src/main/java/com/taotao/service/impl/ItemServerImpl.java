@@ -25,7 +25,7 @@ public class ItemServerImpl implements ItemService{
 	public String getItemCatList() {
 		List itemCatJson = getItemCatJson(0);
 		NodeItem node = new NodeItem();
-		node.setCat_data(itemCatJson);
+		node.setData(itemCatJson);
 		String objectToJson = JsonUtils.objectToJson(node);
 		System.out.println(objectToJson);
 		return objectToJson;
@@ -49,12 +49,12 @@ public class ItemServerImpl implements ItemService{
 					node_p.setCat_name(t.getName());
 				}
 				node_p.setCat_url("/products"+t.getId()+".html");
+				node_p.setCat_item(getItemCatJson(t.getId()));
+				list.add(node_p);
 			}else {
 				String a = "/products/"+t.getId()+".html|"+t.getName();
-				node_p.setCat_name(a);
+				list.add(a);
 			}
-			list.add(node_p);
-			node_p.setCat_item(getItemCatJson(t.getId()));
 		}
 		return list;
 	}

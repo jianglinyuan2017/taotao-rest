@@ -15,8 +15,7 @@ public class NodeItem {
 	@JsonProperty("i")
 	private List<?> cat_item;
 	
-	@JsonProperty("data")
-	private List<?> cat_data;
+	private List<?> data;
 
 	public String getCat_url() {
 		return cat_url;
@@ -42,15 +41,13 @@ public class NodeItem {
 		this.cat_item = cat_item;
 	}
 
-	public List<?> getCat_data() {
-		return cat_data;
+	public List<?> getData() {
+		return data;
 	}
 
-	public void setCat_data(List<?> cat_data) {
-		this.cat_data = cat_data;
+	public void setData(List<?> data) {
+		this.data = data;
 	}
-	
-	
 	
 	
 }
