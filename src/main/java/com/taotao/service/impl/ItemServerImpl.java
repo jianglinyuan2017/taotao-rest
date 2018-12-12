@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
 import com.taotao.comm.util.JsonUtils;
 import com.taotao.mapper.TbItemCatMapper;
 import com.taotao.pojo.NodeItem;
@@ -39,6 +40,7 @@ public class ItemServerImpl implements ItemService{
 		TbItemCatExample example = new TbItemCatExample();
 		Criteria createCriteria = example.createCriteria();
 		createCriteria.andParentIdEqualTo(parentId);
+		PageHelper.startPage(1, 14);
 		List<TbItemCat> selectByExample = tbItemCatMapper.selectByExample(example);
 		for(TbItemCat t : selectByExample) {
 			NodeItem node_p = new NodeItem();
