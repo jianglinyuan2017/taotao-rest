@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.taotao.pojo.NodeItem;
-import com.taotao.service.ItemService;
+import com.taotao.facade.service.ItemService;
 
 @Controller
 @RequestMapping("/itemcat")

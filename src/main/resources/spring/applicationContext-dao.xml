@@ -37,8 +37,8 @@
 	</bean>
 	<!-- jedis客户端单机版 -->
 	<bean id="redisClient" class="redis.clients.jedis.JedisPool">
-		<constructor-arg name="host" value="192.168.199.175"></constructor-arg>
+		<constructor-arg name="host" value="10.210.13.72"></constructor-arg>
 		<constructor-arg name="port" value="6379"></constructor-arg>
 	</bean>
-	
+	<import resource="classpath:spring/dubbo-provider.xml"/>
 </beans>

@@ -3,6 +3,7 @@ package com.taotao.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,20 +16,37 @@ import com.taotao.pojo.NodeItem;
 import com.taotao.pojo.TbItemCat;
 import com.taotao.pojo.TbItemCatExample;
 import com.taotao.pojo.TbItemCatExample.Criteria;
-import com.taotao.service.ItemService;
+import com.taotao.facade.service.ItemService;
+import com.taotao.facade.service.JedisClient;
 
 @Service
 public class ItemServerImpl implements ItemService{
 
 	@Autowired
 	TbItemCatMapper tbItemCatMapper;
+	
+	@Autowired
+	JedisClient jedisClient;
+	
 	@Override
 	public String getItemCatList() {
+		try {
+			String hget = jedisClient.hget("内容列表", 0+"");
+			if(StringUtils.isNotEmpty(hget)) {
+				return hget;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		List itemCatJson = getItemCatJson(0);
 		NodeItem node = new NodeItem();
 		node.setData(itemCatJson);
 		String objectToJson = JsonUtils.objectToJson(node);
-		System.out.println(objectToJson);
+		try {
+			jedisClient.hset("内容列表", 0+"", objectToJson);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return objectToJson;
 	}
 	

@@ -6,19 +6,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.taotao.comm.pojo.EUDataGridResult;
 import com.taotao.comm.util.JsonUtils;
-import com.taotao.comm.util.TaotaoResult;
 import com.taotao.mapper.TbContentMapper;
 import com.taotao.pojo.TbContent;
 import com.taotao.pojo.TbContentExample;
 import com.taotao.pojo.TbContentExample.Criteria;
-import com.taotao.service.ContentService;
-import com.taotao.service.JedisClient;
+import com.taotao.facade.service.ContentService;
+import com.taotao.facade.service.JedisClient;
 
-@Service
+@Service("contentService")
 public class ContentServiceImpl implements ContentService {
 
 	@Autowired
